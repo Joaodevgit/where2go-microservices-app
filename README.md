@@ -18,7 +18,7 @@ The user can explore all the tourist points that are distributed by different ca
 - [Project Architecture](#architecture)
 - [Demo](#demo)
 - [Project Contributors](#project_contributors)
-
+- [License](#license)
 
 <a name="technologies"></a>
 ## Technologies
@@ -57,3 +57,9 @@ Here are some of videos that shows some of the main features of this project:
 | :---: |:---:|:---:|:---:| 
 | ![João Pereira](https://avatars2.githubusercontent.com/u/44362304?s=200&u=e779f8e4e1d4788360e7478a675df73f219b42b4&v=3)| ![Paulo da Cunha](https://avatars0.githubusercontent.com/u/39674226?s=200&u=5e980e380bf0b9d7a7f821ddcc6fe6112e026ae9&v=4) | ![Catarina Moreira](https://user-images.githubusercontent.com/44362304/220717116-da65bdbc-1fbd-41c2-863f-c8bba33a5f34.png) | ![André Ventura](https://user-images.githubusercontent.com/44362304/220717113-2cae8ad8-fa0a-40c9-8f52-24e1f1cd5689.png) 
 | <a href="https://github.com/Joaodevgit" target="_blank">`github.com/Joaodevgit`</a> | <a href="https://github.com/PauloDevGit" target="_blank">`github.com/PauloDevGit`</a> | <a href="https://github.com/CatarinaMoreira29" target="_blank">`github.com/CatarinaMoreira29`</a> | ---
+
+<a name="license"></a>
+## License
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2023 © João Pereira, Paulo da Cunha, Catarina Moreira, André Ventura, ESTG - Polytechnic of Porto
