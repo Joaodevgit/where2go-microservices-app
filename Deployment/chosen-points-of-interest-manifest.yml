@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chosen-points-of-interest-deployment
+  labels:
+    app: chosen-points-of-interest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chosen-points-of-interest
+  template:
+    metadata:
+      labels:
+        app: chosen-points-of-interest
+    spec:
+      containers:
+        - name: chosen-points-of-interest
+          image: joaotdev/mtsds-where2go:chosen-points-of-interest-service
+#          resources:
+#            requests:
+#              cpu: 100m
+#              memory: 64Mi
+#            limits:
+#              cpu: 200m
+#              memory: 128Mi
+          ports:
+            - containerPort: 8009
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "chosen-points-of-interest-service"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-service:5432/chosen-points-of-interest"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "where2go"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "where2go@123"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
+              value: "org.hibernate.dialect.PostgreSQLDialect"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+              value: "true"
+            - name: SPRING_RABBITMQ_HOST
+              value: "rabbitmq-service"
+            - name: SPRING_RABBITMQ_PORT
+              value: "5672"
+            - name: SPRING_RABBITMQ_USERNAME
+              value: "guest"
+            - name: SPRING_RABBITMQ_PASSWORD
+              value: "guest"
+            - name: EUREKA_CLIENT_REGISTER-WITH-EUREKA
+              value: "true"
+            - name: EUREKA_CLIENT_FETCH-REGISTRY
+              value: "true"
+            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE
+              value: "http://eureka-server-service:8761/eureka"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chosen-points-of-interest-service
+spec:
+  type: ClusterIP
+  selector:
+    app: chosen-points-of-interest
+  ports:
+    - protocol: TCP
+      port: 8009
+      targetPort: 8009

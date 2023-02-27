@@ -1,0 +1,616 @@
+{
+    "createdUser": null,
+    "updatedUser": null,
+    "name": "1676811593534_Review-Update",
+    "kong_node_name": "kong",
+    "kong_node_url": "http://kong:8001",
+    "kong_version": "3.1.1",
+    "data": {
+        "services": [
+            {
+                "port": 8003,
+                "client_certificate": null,
+                "path": "/api/user",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1672948182,
+                "updated_at": 1675895814,
+                "host": "user-service",
+                "id": "0d4e7f32-6a83-4007-b9fc-cfb8cbf69914",
+                "protocol": "http",
+                "name": "user-service",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {}
+            },
+            {
+                "port": 8005,
+                "client_certificate": null,
+                "path": "/pointsOfInterest",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1674766618,
+                "updated_at": 1675895814,
+                "host": "points-of-interest-management-service",
+                "id": "0e16c076-1d53-4cc0-ba4a-4454074f7338",
+                "protocol": "http",
+                "name": "points-of-interest-management",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {}
+            },
+            {
+                "port": 8004,
+                "client_certificate": null,
+                "path": "/api/auth",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1673552020,
+                "updated_at": 1675895814,
+                "host": "user-login-service",
+                "id": "1aae7309-890e-4ac4-af17-096e9341781d",
+                "protocol": "http",
+                "name": "user-login",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {}
+            },
+            {
+                "port": 8009,
+                "client_certificate": null,
+                "path": "/chosenPointsOfInterest",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1674772069,
+                "updated_at": 1675895814,
+                "host": "chosen-points-of-interest-service",
+                "id": "28d53355-cf8a-422a-a277-656d4d331f72",
+                "protocol": "http",
+                "name": "chosen-points-of-interest",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {}
+            },
+            {
+                "port": 8006,
+                "client_certificate": null,
+                "path": "/searchHistory",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1674773791,
+                "updated_at": 1675895814,
+                "host": "search-history-service",
+                "id": "53f827de-0957-4e18-b072-0131a36cb0c6",
+                "protocol": "http",
+                "name": "search-history-service",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {}
+            },
+            {
+                "port": 8007,
+                "client_certificate": null,
+                "path": "/itineraries",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1674772986,
+                "updated_at": 1675895814,
+                "host": "itinerary-service",
+                "id": "6f1ee6d1-f1a3-4bd7-bbd7-82350b2f4239",
+                "protocol": "http",
+                "name": "itinerary-service",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {}
+            },
+            {
+                "port": 8002,
+                "client_certificate": null,
+                "path": "/places",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1674773520,
+                "updated_at": 1675895814,
+                "host": "place-service",
+                "id": "742cde6d-4b83-4618-8840-267e7487f553",
+                "protocol": "http",
+                "name": "place-service",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {}
+            },
+            {
+                "port": 8010,
+                "client_certificate": null,
+                "path": "/api/favorite",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1675374447,
+                "updated_at": 1675895814,
+                "host": "favorite-service",
+                "id": "82d626d0-b1da-4d4d-80fe-bbd94b168b2c",
+                "protocol": "http",
+                "name": "favorite-service",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {}
+            },
+            {
+                "port": 8011,
+                "client_certificate": null,
+                "path": "/review",
+                "connect_timeout": 60000,
+                "ca_certificates": null,
+                "read_timeout": 60000,
+                "created_at": 1675895998,
+                "updated_at": 1675895998,
+                "host": "points-of-interest-review-service",
+                "id": "98db9fde-0762-48e2-8a07-7ebe23115022",
+                "protocol": "http",
+                "name": "point-of-interest-review-service",
+                "write_timeout": 60000,
+                "retries": 5,
+                "enabled": true,
+                "tls_verify": null,
+                "tags": [],
+                "tls_verify_depth": null,
+                "extras": {
+                    "id": 1,
+                    "service_id": "98db9fde-0762-48e2-8a07-7ebe23115022",
+                    "kong_node_id": "2",
+                    "description": null,
+                    "tags": null,
+                    "createdAt": "2023-02-08T22:39:58.000Z",
+                    "updatedAt": "2023-02-08T22:39:58.000Z",
+                    "createdUser": null,
+                    "updatedUser": null
+                }
+            }
+        ],
+        "routes": [
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "53f827de-0957-4e18-b072-0131a36cb0c6"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1674773849,
+                "updated_at": 1675895817,
+                "methods": [
+                    "GET",
+                    "OPTIONS"
+                ],
+                "id": "2ae7c43c-a246-4d94-9de7-3a8c99235a26",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "search-history-service",
+                "snis": null,
+                "tags": null,
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/pointsOfInterestSearchHistory"
+                ],
+                "headers": null
+            },
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "0d4e7f32-6a83-4007-b9fc-cfb8cbf69914"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1672948195,
+                "updated_at": 1675895817,
+                "methods": [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "DELETE",
+                    "OPTIONS"
+                ],
+                "id": "3d08f1c8-8c19-4547-9819-1fbd2e878d8c",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "Get-And-Create-User",
+                "snis": null,
+                "tags": [
+                    "User"
+                ],
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/user-service"
+                ],
+                "headers": null
+            },
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "98db9fde-0762-48e2-8a07-7ebe23115022"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1675896109,
+                "updated_at": 1675896109,
+                "methods": [
+                    "GET",
+                    "POST",
+                    "OPTIONS"
+                ],
+                "id": "505f790b-4580-4a52-9f93-26dd624036bf",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "Routes-Review",
+                "snis": null,
+                "tags": [
+                    "Review"
+                ],
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/pointsOfInterestReview"
+                ],
+                "headers": null
+            },
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "0e16c076-1d53-4cc0-ba4a-4454074f7338"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1674766829,
+                "updated_at": 1675895817,
+                "methods": [
+                    "GET",
+                    "POST",
+                    "OPTIONS"
+                ],
+                "id": "82bff1d4-a788-4b3c-9673-0a3fe31a0e94",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "points-of-interest-management",
+                "snis": null,
+                "tags": null,
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/pointOfInterestManagement"
+                ],
+                "headers": null
+            },
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "28d53355-cf8a-422a-a277-656d4d331f72"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1674772105,
+                "updated_at": 1675895817,
+                "methods": [
+                    "GET",
+                    "POST",
+                    "DELETE",
+                    "OPTIONS"
+                ],
+                "id": "8751f8b6-67da-4228-a9c7-309da03fa895",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "chosen-points-of-interest",
+                "snis": null,
+                "tags": null,
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/chosenPoints"
+                ],
+                "headers": null
+            },
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "82d626d0-b1da-4d4d-80fe-bbd94b168b2c"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1675374530,
+                "updated_at": 1675895817,
+                "methods": [
+                    "GET",
+                    "POST",
+                    "DELETE",
+                    "OPTIONS"
+                ],
+                "id": "93790e94-925b-4992-b3b0-3be9bface0d1",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "Routes",
+                "snis": null,
+                "tags": [
+                    "Favorites"
+                ],
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/favorite"
+                ],
+                "headers": null
+            },
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "1aae7309-890e-4ac4-af17-096e9341781d"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1673552062,
+                "updated_at": 1675895817,
+                "methods": [
+                    "GET",
+                    "POST",
+                    "OPTIONS"
+                ],
+                "id": "94e62fa7-90ad-4077-97c6-23b2ef6d719a",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "Generate-Token",
+                "snis": null,
+                "tags": [
+                    "Auth"
+                ],
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/user-login"
+                ],
+                "headers": null
+            },
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "6f1ee6d1-f1a3-4bd7-bbd7-82350b2f4239"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1674773162,
+                "updated_at": 1675895817,
+                "methods": [
+                    "GET",
+                    "POST",
+                    "DELETE",
+                    "OPTIONS"
+                ],
+                "id": "9b7efb22-4e67-4d7d-b04e-973ea7181b15",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "itinerary",
+                "snis": null,
+                "tags": null,
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/pointOfInterestItinerary"
+                ],
+                "headers": null
+            },
+            {
+                "path_handling": "v1",
+                "request_buffering": true,
+                "response_buffering": true,
+                "strip_path": true,
+                "https_redirect_status_code": 426,
+                "service": {
+                    "id": "742cde6d-4b83-4618-8840-267e7487f553"
+                },
+                "preserve_host": false,
+                "hosts": null,
+                "created_at": 1674773601,
+                "updated_at": 1675895817,
+                "methods": [
+                    "GET",
+                    "OPTIONS"
+                ],
+                "id": "ac02f5e0-ad24-4ba8-a0bd-5b8ba1ef1a95",
+                "destinations": null,
+                "protocols": [
+                    "http",
+                    "https"
+                ],
+                "name": "places-service",
+                "snis": null,
+                "tags": null,
+                "sources": null,
+                "regex_priority": 0,
+                "paths": [
+                    "/placesSearch"
+                ],
+                "headers": null
+            }
+        ],
+        "consumers": [],
+        "plugins": [
+            {
+                "consumer": null,
+                "id": "afe851cb-a4b5-4631-9347-8475e4041fd2",
+                "tags": null,
+                "route": null,
+                "protocols": [
+                    "grpc",
+                    "grpcs",
+                    "http",
+                    "https"
+                ],
+                "name": "cors",
+                "service": {
+                    "id": "0d4e7f32-6a83-4007-b9fc-cfb8cbf69914"
+                },
+                "enabled": true,
+                "config": {
+                    "methods": [
+                        "GET",
+                        "POST",
+                        "DELETE",
+                        "PUT"
+                    ],
+                    "origins": [
+                        "*"
+                    ],
+                    "max_age": null,
+                    "preflight_continue": false,
+                    "credentials": true,
+                    "headers": null,
+                    "exposed_headers": null
+                },
+                "created_at": 1673814331
+            },
+            {
+                "consumer": null,
+                "id": "bcaeffd7-4c10-4fb8-aa33-7ec823815096",
+                "tags": null,
+                "route": null,
+                "protocols": [
+                    "grpc",
+                    "grpcs",
+                    "http",
+                    "https"
+                ],
+                "name": "cors",
+                "service": null,
+                "enabled": true,
+                "config": {
+                    "methods": [
+                        "GET",
+                        "PUT",
+                        "POST",
+                        "DELETE"
+                    ],
+                    "origins": [
+                        "*"
+                    ],
+                    "max_age": 3600,
+                    "preflight_continue": false,
+                    "credentials": true,
+                    "headers": [
+                        "Accept",
+                        "Accept-Version",
+                        "Content-Length",
+                        "Content-MD5",
+                        "Content-Type",
+                        "Date",
+                        "X-Auth-Token"
+                    ],
+                    "exposed_headers": [
+                        "X-Auth-Token"
+                    ]
+                },
+                "created_at": 1673654257
+            }
+        ],
+        "acls": [],
+        "upstreams": [],
+        "certificates": [],
+        "snis": []
+    },
+    "createdAt": "2023-02-19T12:59:53.565Z",
+    "updatedAt": "2023-02-19T12:59:53.565Z",
+    "id": 1
+}

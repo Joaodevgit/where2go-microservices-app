@@ -1,0 +1,41 @@
+<div class="home-banner">
+
+    <div class="title">
+      AS MINHAS PESQUISAS
+    </div>
+  <div class="banner-image">
+        <img class="imagem" src="assets/where2go.png" alt="where2go.png" width="350px">
+  </div>
+    </div>
+
+
+<div *ngFor="let grupo of dadosAgrupados | keyvalue">
+  <mat-expansion-panel hideTogge>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Pesquisa: {{ grupo.key }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="point" fxLayout="row" fxLayoutAlign="center center" *ngFor="let item of searches">
+      <ng-container *ngIf="grupo.key==item.search_id">
+      <div class="right" fxFlex="15%"  >
+        <div class="container" (click)="getPointInterestInfo(item.xid)">
+          <img class="image" src="{{item.image}}">
+        </div>
+
+      </div>
+      <div class="middle" fxFlex="75%" (click)="getPointInterestInfo(item.xid)">
+        <div class="pointName">
+          {{item.name}}
+        </div>
+        <mat-divider></mat-divider>
+        <br>
+        {{item.description}}
+      </div>
+    </ng-container>
+    </div>
+  </mat-expansion-panel>
+  <br>
+</div>
+

@@ -1,0 +1,167 @@
+<div class="home-banner">
+  <div class="banner-image">
+    <img src="assets/where2go.png" alt="where2go.png" width="350px">
+  </div>
+</div>
+
+
+<form (submit)="onSearch(pointSearch)" #pointSearch="ngForm" fxLayout="row"
+      fxLayoutAlign="center none" fxLayoutGap="20px">
+
+  <button class="button-main" mat-mini-fab *ngIf="optionFormAppear" (click)="showOptionForm()">
+    <mat-icon>remove</mat-icon>
+  </button>
+  <button class="button-main" mat-mini-fab *ngIf="!optionFormAppear" (click)="showOptionForm()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-form-field *ngIf="optionFormAppear">
+    <input matInput name="place" ngModel type="text" placeholder="Insert the place" #placeInput="ngModel" email>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="city" ngModel type="text" placeholder="Insert the city" #cityInput="ngModel" required email>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" name="radius" ngModel placeholder="Insert the radius (km)" #radiusdInput="ngModel"
+           required>
+  </mat-form-field>
+  <button class="button-main" mat-mini-fab type="submit">
+    <mat-icon>search</mat-icon>
+  </button>
+
+</form>
+<br>
+<br>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div class="container" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="10px" >
+  <div fxFlex="5%" class="vertical-text"><h1>Porto</h1></div>
+  <div fxFlex="95%">
+    <mat-spinner *ngIf="showMatSpinner"></mat-spinner>
+    <mat-grid-list *ngIf="!showMatSpinner" cols="5" rowHeight="1:1">
+      <mat-grid-tile>
+        <button class="button-main" mat-mini-fab (click)="showPreviewImages('Porto')">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let image of imagesPorto">
+        <mat-card>
+          <div fxLayout="column">
+            <div fxFlex="90%">
+              <div class="pointOfInterestSection" (click)="getPointInterestInfo(image.xid)">
+                <img [src]=image.image>
+                <br>
+                <h3>{{image.name | slice:0:30}}</h3>
+              </div>
+            </div>
+            <div fxFlex="10%">
+              <div fxLayout="row" fxLayoutAlign="end end" *ngIf="idUser===1">
+                <button mat-icon-button color="warn" (click)="addFavorite(image.xid, image.name, image.image)">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button (click)="addToItenerary(image)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button class="button-main" class="button-main" mat-mini-fab (click)="showNextImages('Porto')">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  </div>
+</div>
+<br>
+<br>
+
+<div class="container" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="10px" >
+  <div fxFlex="5%" class="vertical-text"><h1>Lisboa</h1></div>
+  <div fxFlex="95%">
+    <mat-spinner *ngIf="showMatSpinner"></mat-spinner>
+    <mat-grid-list *ngIf="!showMatSpinner" cols="5" rowHeight="1:1">
+      <mat-grid-tile>
+        <button class="button-main" mat-mini-fab (click)="showPreviewImages('Lisboa')">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let image of imagesLisboa">
+        <mat-card>
+          <div fxLayout="column">
+            <div fxFlex="90%">
+              <div class="pointOfInterestSection" (click)="getPointInterestInfo(image.xid)">
+                <img [src]=image.image>
+                <br>
+                <h3>{{image.name | slice:0:30}}</h3>
+              </div>
+            </div>
+            <div fxFlex="10%">
+              <div fxLayout="row" fxLayoutAlign="end end">
+                <button mat-icon-button color="warn" (click)="addFavorite(image.xid, image.name, image.image)">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button (click)="addToItenerary(image)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button class="button-main" mat-mini-fab (click)="showNextImages('Lisboa')">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="container" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="10px"  >
+  <div fxFlex="5%" class="vertical-text"><h1>Faro</h1></div>
+  <div fxFlex="95%">
+    <mat-spinner *ngIf="showMatSpinner"></mat-spinner>
+    <mat-grid-list *ngIf="!showMatSpinner" cols="5" rowHeight="1:1">
+      <mat-grid-tile style="">
+        <button class="button-main" mat-mini-fab (click)="showPreviewImages('Faro')">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let image of imagesFaro">
+        <mat-card>
+          <div fxLayout="column">
+            <div fxFlex="90%">
+              <div class="pointOfInterestSection" (click)="getPointInterestInfo(image.xid)">
+                <img [src]=image.image>
+                <br>
+                <h3>{{image.name | slice:0:30}}</h3>
+              </div>
+            </div>
+            <div fxFlex="10%">
+              <div fxLayout="row" fxLayoutAlign="end end">
+                <button mat-icon-button color="warn" (click)="addFavorite(image.xid, image.name, image.image)">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button (click)="addToItenerary(image)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button class="button-main" mat-mini-fab (click)="showNextImages('Faro')">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+<br>
+<br>

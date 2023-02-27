@@ -1,0 +1,147 @@
+<mat-card class="example-card">
+  <br>
+  <br>
+  <div fxLayout="row" class="card">
+    <div fxFlex="30%">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img mat-card-image src="{{pointData.image}}">
+          </div>
+          <div class="flip-card-back">
+            <agm-map [zoom]="14" [latitude]="pointData.latitude" [longitude]="pointData.longitude">
+              <agm-marker [latitude]="pointData.latitude" [longitude]="pointData.longitude"></agm-marker>
+            </agm-map>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div fxFlex="70%">
+      <mat-card-content>
+        <div fxLayout="row" style="height: 35px">
+          <div fxFlex="90%">
+            <h1>{{pointData.name}}</h1>
+          </div>
+          <div fxFlex="10%" *ngIf="currentUser!== null">
+            <mat-card-actions>
+              <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                      (click)="addFavorite(pointData.xid, pointData.name, pointData.image)">
+                <mat-icon>favorite</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="Example icon button with a heart icon"
+                      (click)="addToItenerary(pointData)">
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-card-actions>
+          </div>
+        </div>
+        <mat-chip-set
+          class="example-chip"
+          cdkDropList
+          cdkDropListOrientation="horizontal">
+          <mat-chip
+            class="example-box"
+            cdkDrag
+            (click)="clickKind(kind)"
+            *ngFor="let kind of kinds">
+            {{kind.name}}
+          </mat-chip>
+        </mat-chip-set>
+
+        <br>
+        <mat-star-rating rating="{{pointData.rate}}"></mat-star-rating>
+        <br>
+        <p>
+          {{pointData.decription}}
+        </p>
+      </mat-card-content>
+    </div>
+  </div>
+  <br>
+  <br>
+</mat-card>
+
+<br>
+<br>
+
+
+<div fxLayout="row">
+  <div fxFlex="97%"><h1>Comentários: </h1></div>
+  <div fxFlex="3%">
+    <button mat-icon-button (click)="showReview()">
+      <mat-icon> comment</mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-card>
+  <form *ngIf="showR">
+    <div fxLayout="column" fxLayoutAlign="space-between none">
+      <br>
+      <div fxFlex="40%">
+        <label id="example-radio-group-label">Selecione o ranking</label>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          name="ratingNumber"
+          [(ngModel)]="selectedValue" [selected]="selectedValue"
+        >
+          <mat-radio-button value="1">
+            <mat-star-rating rating="1"></mat-star-rating>
+          </mat-radio-button>
+          <mat-radio-button value="2">
+            <mat-star-rating rating="2"></mat-star-rating>
+          </mat-radio-button>
+          <mat-radio-button value="3">
+            <mat-star-rating rating="3"></mat-star-rating>
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <br>
+      <div fxFlex="50%">
+        <mat-form-field class="example-full-width" style="width: 100%">
+          <mat-label>Inserir comentário:</mat-label>
+          <textarea id="comment" name="comment" matInput></textarea>
+        </mat-form-field>
+      </div>
+      <br>
+      <div fxFlex="10%" style="margin:auto; width: 40%">
+        <button style="width: 100%" mat-raised-button aria-label="Example icon button with a heart icon"
+                (click)="addReview(pointData.xid)">
+          Adicionar comentário
+        </button>
+      </div>
+      <br>
+    </div>
+
+  </form>
+</mat-card>
+
+<br>
+<br>
+<div *ngFor="let review of pointReviews">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{review.userName }}</mat-card-title>
+      <mat-card-subtitle>
+        <mat-star-rating rating="{{review.rate}}"></mat-star-rating>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{review.commentary}}
+      </p>
+    </mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="end none">
+      <mat-card-footer>{{moment(review.reviewDate)}}</mat-card-footer>
+    </div>
+
+  </mat-card>
+  <br>
+  <br>
+</div>
+
+<br>
+<br>

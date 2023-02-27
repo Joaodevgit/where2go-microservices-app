@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: joaotdev/mtsds-where2go:postgres
+#          resources:
+#            requests:
+#              cpu: 100m
+#              memory: 64Mi
+#            limits:
+#              cpu: 200m
+#              memory: 128Mi
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "where2go"
+            - name: POSTGRES_PASSWORD
+              value: "where2go@123"
+            - name: PGDATA
+              value: "/data/postgres"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  type: ClusterIP
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

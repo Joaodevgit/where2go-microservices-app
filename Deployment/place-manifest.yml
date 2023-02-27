@@ -1,0 +1,63 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: place-deployment
+  labels:
+    app: place
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: place
+  template:
+    metadata:
+      labels:
+        app: place
+    spec:
+      containers:
+        - name: place
+          image: joaotdev/mtsds-where2go:place-service
+#          resources:
+#            requests:
+#              cpu: 100m
+#              memory: 64Mi
+#            limits:
+#              cpu: 200m
+#              memory: 128Mi
+          ports:
+            - containerPort: 8002
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "place-service"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-service:5432/place"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "where2go"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "where2go@123"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
+              value: "org.hibernate.dialect.PostgreSQLDialect"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+              value: "true"
+            - name: EUREKA_CLIENT_REGISTER-WITH-EUREKA
+              value: "true"
+            - name: EUREKA_CLIENT_FETCH-REGISTRY
+              value: "true"
+            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE
+              value: "http://eureka-server-service:8761/eureka"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: place-service
+spec:
+  type: ClusterIP
+  selector:
+    app: place
+  ports:
+    - protocol: TCP
+      port: 8002
+      targetPort: 8002

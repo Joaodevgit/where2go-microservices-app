@@ -1,0 +1,448 @@
+version: '3.9'
+
+volumes:
+  user-db:
+    driver: local
+  postgres:
+  pgadmin:
+  rabbitmq:
+  kong-db:
+    driver: local
+
+networks:
+  kong-net:
+    name: kong-net
+    driver: bridge
+    external: true
+
+
+services:
+  kong-database:
+    image: postgres:9.6
+    container_name: kong-database
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: kong
+      POSTGRES_DB: kong
+      POSTGRES_PASSWORD: kong
+    restart: always
+    networks:
+      - kong-net
+    volumes:
+    - kong-db:/var/lib/postgresql/data
+
+  kong-migrations:
+    image: kong
+    container_name: kong-migrations
+    links:
+      - kong-database:kong-database
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: kong
+      KONG_CASSANDRA_CONTACT_POINTS: kong-database
+    command: kong migrations bootstrap
+    restart: on-failure
+    networks:
+      - kong-net
+    depends_on: 
+      - kong-database
+
+  kong:
+    image: kong
+    container_name: kong
+    links:
+      - kong-database:kong-database
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: kong
+      KONG_CASSANDRA_CONTACT_POINTS: kong-database
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    restart: always
+    ports:
+      - 8000:8000
+      - 8443:8443
+      - 8001:8001
+      - 8444:8444
+    networks:
+      - kong-net
+    depends_on:
+      - kong-migrations
+
+  konga-prepare:
+    image: pantsel/konga
+    container_name: konga-prepare
+    environment:
+      DB_ADAPTER: postgres
+      DB_HOST: kong-database
+      DB_USER: kong
+      DB_PASSWORD: kong
+    command: "-c prepare -a postgres -u postgresql://kong:kong@kong-database:5432/konga_db"
+    restart: on-failure
+    networks:
+    - kong-net
+    depends_on:
+    - kong-database
+
+  konga:
+    image: pantsel/konga
+    container_name: konga
+    environment:
+      DB_ADAPTER: postgres
+      DB_HOST: kong-database
+      DB_USER: kong
+      DB_PASSWORD: kong
+      TOKEN_SECRET: km1GUr4RkcQD7DewhJPNXrCuZwcKmqjb
+      DB_DATABASE: konga_db
+      NODE_ENV: production
+    restart: always
+    ports:
+    - 1337:1337
+    networks:
+    - kong-net
+    depends_on:
+    - kong-database
+
+  rabbitmq:
+    image: rabbitmq:3.11.3-management
+    container_name: rabbitmq
+    mem_limit: 700m
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - kong-net
+      
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    mem_limit: 700m
+    environment:
+      POSTGRES_USER: where2go
+      POSTGRES_PASSWORD: where2go@123
+      PGDATA: /data/postgres
+    volumes:
+      - ./sqlScripts/init_database.sql:/docker-entrypoint-initdb.d/init_database.sql
+    ports:
+      - "5433:5433"
+    command: -p 5433
+    networks:
+      - kong-net
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    mem_limit: 700m
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: on-failure
+    networks:
+      - kong-net
+
+  eureka-server-service:
+    image: "joaotdev/mtsds-where2go:eureka-server-service"
+    container_name: eureka-server-service
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    environment:  
+      - SPRING_APPLICATION_NAME=eureka-server-service
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=false
+      - EUREKA_CLIENT_FETCH-REGISTRY=false
+    networks:
+      - kong-net
+
+  user-service:
+    image: joaotdev/mtsds-where2go:user-service
+    container_name: user-service
+    mem_limit: 700m
+    depends_on:
+      - postgres
+      - eureka-server-service
+    ports:
+      - 8003:8003
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    environment:
+      - SPRING_APPLICATION_NAME=user-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/user_app
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net
+
+  user-login-service:
+    image: joaotdev/mtsds-where2go:user-login
+    container_name: user-login-service
+    mem_limit: 700m
+    ports:
+      - 8004:8004
+    depends_on:
+      - postgres
+      - eureka-server-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s    
+    environment:
+      - SPRING_APPLICATION_NAME=user-login-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/user_app
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net
+
+  place-service:
+    image: "joaotdev/mtsds-where2go:place-service"
+    container_name: place-service
+    mem_limit: 700m
+    depends_on:
+      - postgres
+      - eureka-server-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 8002:8002
+    environment:
+      - SPRING_APPLICATION_NAME=place-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/place
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net
+
+  points-of-interest-management-service:
+    image: "joaotdev/mtsds-where2go:point-of-interest-management-service"
+    container_name: points-of-interest-management-service
+    mem_limit: 700m
+    depends_on:
+      - postgres
+      - rabbitmq
+      - eureka-server-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 8005:8005
+    environment:
+      - SPRING_APPLICATION_NAME=points-of-interest-management-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/points-of-interest-management
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net
+
+  search-history-service:
+    image: "joaotdev/mtsds-where2go:search-history-service"
+    container_name: search-history-service
+    mem_limit: 700m
+    depends_on:
+      - postgres
+      - rabbitmq
+      - eureka-server-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 8006:8006
+    environment:
+      - SPRING_APPLICATION_NAME=search-history-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/search-history
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net
+
+  itinerary-service:
+    image: "joaotdev/mtsds-where2go:itinerary-service"
+    container_name: itinerary-service
+    mem_limit: 700m
+    depends_on:
+      - postgres
+      - rabbitmq
+      - eureka-server-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 8007:8007
+    environment:
+      - SPRING_APPLICATION_NAME=itinerary-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/itinerary
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net
+
+  chosen-points-of-interest-service:
+    image: "joaotdev/mtsds-where2go:chosen-points-of-interest-service"
+    container_name: chosen-points-of-interest-service
+    mem_limit: 700m
+    depends_on:
+      - postgres
+      - rabbitmq
+      - eureka-server-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 8009:8009
+    environment:
+      - SPRING_APPLICATION_NAME=chosen-points-of-interest-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/chosen-points-of-interest
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net
+
+  favorite-service:
+    image: joaotdev/mtsds-where2go:favorite-service
+    container_name: favorite-service
+    mem_limit: 700m
+    ports:
+      - 8010:8010
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    depends_on:
+      - postgres
+      - eureka-server-service
+    environment:
+      - SPRING_APPLICATION_NAME=favorite-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/favorite
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net
+
+  point-of-interest-review-service:
+    image: "joaotdev/mtsds-where2go:point-of-interest-review-service"
+    container_name: point-of-interest-review-service
+    mem_limit: 700m
+    depends_on:
+      - postgres
+      - eureka-server-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 8011:8011
+    environment:
+      - SPRING_APPLICATION_NAME=point-of-interest-review-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/points-of-interest-review
+      - SPRING_DATASOURCE_USERNAME=where2go
+      - SPRING_DATASOURCE_PASSWORD=where2go@123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=true
+      - EUREKA_CLIENT_FETCH-REGISTRY=true
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-server-service:8761/eureka/
+    networks:
+      - kong-net

@@ -1,0 +1,62 @@
+<div>
+  <div class="home-banner">
+    <div class="banner-image">
+      <div class="title">
+        GERAR ITINERÁRIO
+
+      </div>
+      <img *ngIf="!isGenerated" src="assets/where2go.png" alt="where2go.png" width="250px">
+      <agm-map *ngIf="route && isGenerated">
+        <agm-direction
+          [travelMode]="travelMode"
+          [origin]="route.origin"
+          [destination]="route.destination"
+          [waypoints]="route.waypoints"
+        >
+        </agm-direction>
+      </agm-map>
+    </div>
+  </div>
+</div>
+
+<div class="point" fxLayout="row" fxLayoutAlign="center center" *ngFor="let point of points">
+  <div class="right" fxFlex="15%">
+    <div class="container">
+      <img class="image" src="{{point.image}}">
+    </div>
+
+  </div>
+  <div class="middle" fxFlex="75%">
+    <div class="pointName">
+      {{point.name}}
+    </div>
+    <mat-divider></mat-divider>
+    <br>
+    {{point.description}}
+  </div>
+  <div class="left" fxFlex="15%" *ngIf="!isGenerated">
+    <button mat-mini-fab class="remover" (click)="removeItem(point)">
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div>
+
+</div>
+
+
+<div class="home-banner">
+  <div class="banner-image">
+    <button *ngIf="!isGenerated" mat-raised-button class="gerarItinerario" (click)="generateItinerary()">Gerar
+      Itinerário
+    </button>
+    <button *ngIf="isGenerated"  mat-raised-button class="gerarItinerario" (click)="saveItinerary()">Guardar
+      Itinerário
+    </button>
+  </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>

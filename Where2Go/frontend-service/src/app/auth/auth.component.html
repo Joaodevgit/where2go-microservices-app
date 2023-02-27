@@ -1,0 +1,10 @@
+<mat-tab-group dynamicHeight>
+  <mat-tab  label="Login">
+    <app-login (loginButtonClicked)="fromWhere('login')"></app-login>
+  </mat-tab>
+  <mat-tab label="Register">
+    <div >
+      <app-register (registerButtonClicked)="fromWhere('register')"></app-register>
+    </div>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-history-deployment
+  labels:
+    app: search-history
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search-history
+  template:
+    metadata:
+      labels:
+        app: search-history
+    spec:
+      containers:
+        - name: search-history
+          image: joaotdev/mtsds-where2go:search-history-service
+#          resources:
+#            requests:
+#              cpu: 100m
+#              memory: 64Mi
+#            limits:
+#              cpu: 200m
+#              memory: 128Mi
+          ports:
+            - containerPort: 8002
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "search-history-service"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-service:5432/search-history"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "where2go"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "where2go@123"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
+              value: "org.hibernate.dialect.PostgreSQLDialect"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+              value: "true"
+            - name: SPRING_RABBITMQ_HOST
+              value: "rabbitmq-service"
+            - name: SPRING_RABBITMQ_PORT
+              value: "5672"
+            - name: SPRING_RABBITMQ_USERNAME
+              value: "guest"
+            - name: SPRING_RABBITMQ_PASSWORD
+              value: "guest"
+            - name: EUREKA_CLIENT_REGISTER-WITH-EUREKA
+              value: "true"
+            - name: EUREKA_CLIENT_FETCH-REGISTRY
+              value: "true"
+            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE
+              value: "http://eureka-server-service:8761/eureka"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: search-history-service
+spec:
+  type: ClusterIP
+  selector:
+    app: search-history
+  ports:
+    - protocol: TCP
+      port: 8006
+      targetPort: 8006

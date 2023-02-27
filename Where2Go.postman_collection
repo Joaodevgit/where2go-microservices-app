@@ -1,0 +1,2305 @@
+{
+	"info": {
+		"_postman_id": "9090d06c-5e1d-4862-a563-a24dcf0ed774",
+		"name": "MTSDS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7669611"
+	},
+	"item": [
+		{
+			"name": "Localhost Development",
+			"item": [
+				{
+					"name": "chosen-points-of-interest-service",
+					"item": [
+						{
+							"name": "Get all chosen points of a user given an user id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8009/chosenPointsOfInterest/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8009",
+									"path": [
+										"chosenPointsOfInterest",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save a chosen point of interest",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"xid\": \"W13531471\",\r\n    \"user_id\": 1,\r\n    \"name\": \"Jardim da Rotunda da Boavista\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8009/chosenPointsOfInterest/save",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8009",
+									"path": [
+										"chosenPointsOfInterest",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a user chosen point of interest",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8009/chosenPointsOfInterest/1/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8009",
+									"path": [
+										"chosenPointsOfInterest",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "itinerary-service",
+					"item": [
+						{
+							"name": "Get an itinerary given user id and itinerary id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/itineraries/1/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"itineraries",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all user itineraries given user id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/itineraries/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"itineraries",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate itinerary",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"xid\": \"W484585764\",\r\n        \"user_id\":1,\r\n        \"name\": \"Monumento aos Heróis da Guerra Peninsular (Porto)\",\r\n        \"latitude\": 41.15791702270508,\r\n        \"longitude\": -8.62914752960205\r\n    },\r\n    {\r\n        \"xid\": \"Q10356474\",\r\n        \"user_id\":1,\r\n        \"name\": \"Quiosque na Praça de Mouzinho de Albuquerque\",\r\n        \"latitude\": 41.15840148925781,\r\n        \"longitude\": -8.630023002624512\r\n    },\r\n    {\r\n        \"xid\": \"W13531471\",\r\n        \"user_id\":1,\r\n        \"name\": \"Jardim da Rotunda da Boavista\",\r\n        \"latitude\": 41.157920837402344,\r\n        \"longitude\": -8.629106521606445\r\n    },\r\n    {\r\n        \"xid\": \"Q37813003\",\r\n        \"user_id\":1,\r\n        \"name\": \"Cinema Pedro Cem\",\r\n        \"latitude\": 41.150238037109375,\r\n        \"longitude\": -8.62578010559082\r\n    },\r\n    {\r\n        \"xid\": \"W256278804\",\r\n        \"user_id\":1,\r\n        \"name\": \"Igreja do Seminário\",\r\n        \"latitude\": 41.15011978149414,\r\n        \"longitude\": -8.62797737121582\r\n    },\r\n    {\r\n        \"xid\": \"N6647824379\",\r\n        \"user_id\":1,\r\n        \"name\": \"O Melhor Café é o da Brasileira\",\r\n        \"latitude\": 41.15019226074219,\r\n        \"longitude\": -8.612600326538086\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8007/itineraries/itinerary",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"itineraries",
+										"itinerary"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save itinerary",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W484585764\",\r\n        \"pointOfInterestName\": \"Monumento aos Heróis da Guerra Peninsular (Porto)\",\r\n        \"distance\": 3.4592324397377614,\r\n        \"latitude\": 41.15791702270508,\r\n        \"longitude\": -8.62914752960205,\r\n        \"routeOrder\": 1,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W13531471\",\r\n        \"pointOfInterestName\": \"Jardim da Rotunda da Boavista\",\r\n        \"distance\": 93.50603324315061,\r\n        \"latitude\": 41.157920837402344,\r\n        \"longitude\": -8.629106521606445,\r\n        \"routeOrder\": 2,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"Q10356474\",\r\n        \"pointOfInterestName\": \"Quiosque na Praça de Mouzinho de Albuquerque\",\r\n        \"distance\": 936.6746648540371,\r\n        \"latitude\": 41.15840148925781,\r\n        \"longitude\": -8.630023002624512,\r\n        \"routeOrder\": 3,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W256278804\",\r\n        \"pointOfInterestName\": \"Igreja do Seminário\",\r\n        \"distance\": 184.44281015516938,\r\n        \"latitude\": 41.15011978149414,\r\n        \"longitude\": -8.62797737121582,\r\n        \"routeOrder\": 4,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"Q37813003\",\r\n        \"pointOfInterestName\": \"Cinema Pedro Cem\",\r\n        \"distance\": 1103.532634475582,\r\n        \"latitude\": 41.150238037109375,\r\n        \"longitude\": -8.62578010559082,\r\n        \"routeOrder\": 5,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"N6647824379\",\r\n        \"pointOfInterestName\": \"O Melhor Café é o da Brasileira\",\r\n        \"distance\": 0.0,\r\n        \"latitude\": 41.15019226074219,\r\n        \"longitude\": -8.612600326538086,\r\n        \"routeOrder\": 6,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8007/itineraries/itinerary/save",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"itineraries",
+										"itinerary",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an itinerary given an itinerary id and an user id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/itineraries/itinerary/1/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"itineraries",
+										"itinerary",
+										"1",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a point of interest from an itinerary given an itinerary id, an user id and a xid",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/itineraries/itinerary/1/6/W456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"itineraries",
+										"itinerary",
+										"1",
+										"6",
+										"W456"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "place-service",
+					"item": [
+						{
+							"name": "Get place by name and countryLetter",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8002/places/place/Porto,PT",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8002",
+									"path": [
+										"places",
+										"place",
+										"Porto,PT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get place by user latitude and longitude",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8002/places/userPlace/41.15794/-8.629105",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8002",
+									"path": [
+										"places",
+										"userPlace",
+										"41.15794",
+										"-8.629105"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "point-of-interest-management-service",
+					"item": [
+						{
+							"name": "Get Point of Interest by xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8005/pointsOfInterest/W286005374",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"pointsOfInterest",
+										"W286005374"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all points of interest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8005/pointsOfInterest/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"pointsOfInterest",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list of point of interests by radius, user latitude and user longitude",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8005/pointsOfInterest/searchPointsInterest/radius=10000_lon=-8.610291481_lat=41.1510467529_kinds=accomodations_search=_1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"pointsOfInterest",
+										"searchPointsInterest",
+										"radius=10000_lon=-8.610291481_lat=41.1510467529_kinds=accomodations_search=_1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Point of Interest by xid list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    \"N1528602579\",\r\n    \"W855601514\"\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/pointsOfInterest/listXid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"pointsOfInterest",
+										"listXid"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "search-history-service",
+					"item": [
+						{
+							"name": "Get last 5 user's points of interest searches",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/searchHistory/searches/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"searchHistory",
+										"searches",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "favorite-service",
+					"item": [
+						{
+							"name": "GET Favorites",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8010/api/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8010/api/favorite/user/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"favorite",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites Point Of Interest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8010/api/favorite/point-of-interest/W855601514",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"favorite",
+										"point-of-interest",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites Point Of Interest Count",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8010/api/favorite/point-of-interest-count/W855601514",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"favorite",
+										"point-of-interest-count",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Favorite User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"xid\": \"W855601514\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Favorite",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8010/api/favorite/1/W855601514",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"favorite",
+										"1",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "point-of-interest-review-service",
+					"item": [
+						{
+							"name": "Get point of Interest review details given userId and xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8011/review/reviews/1/W1233",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8011",
+									"path": [
+										"review",
+										"reviews",
+										"1",
+										"W1233"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all user point of Interest reviews given an userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8011/review/reviews/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8011",
+									"path": [
+										"review",
+										"reviews",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all point of Interest reviews given an xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8011/review/reviews/pointsOfInterest/W123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8011",
+									"path": [
+										"review",
+										"reviews",
+										"pointsOfInterest",
+										"W123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a point of interest rate given a xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8011/review/reviews/rate/W123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8011",
+									"path": [
+										"review",
+										"reviews",
+										"rate",
+										"W123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a review to a certain point of interest",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"xid\": \"W123\",\r\n    \"commentary\": \"Good\",\r\n    \"rate\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8011/review/reviews",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8011",
+									"path": [
+										"review",
+										"reviews"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "API Gateway",
+			"item": [
+				{
+					"name": "chosen-points-of-interest-service",
+					"item": [
+						{
+							"name": "Get all chosen points of a user given an user id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/chosenPoints/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"chosenPoints",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save a chosen point of interest",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"xid\": \"W13531471\",\r\n    \"user_id\": 1,\r\n    \"name\": \"Jardim da Rotunda da Boavista\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/chosenPoints/save",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"chosenPoints",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a user chosen point of interest",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/chosenPoints/1/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"chosenPoints",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "itinerary-service",
+					"item": [
+						{
+							"name": "Get an itinerary given user id and itinerary id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestItinerary/1/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestItinerary",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all user itineraries given user id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestItinerary/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestItinerary",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate itinerary",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"xid\": \"W484585764\",\r\n        \"user_id\":1,\r\n        \"name\": \"Monumento aos Heróis da Guerra Peninsular (Porto)\",\r\n        \"latitude\": 41.15791702270508,\r\n        \"longitude\": -8.62914752960205\r\n    },\r\n    {\r\n        \"xid\": \"Q10356474\",\r\n        \"user_id\":1,\r\n        \"name\": \"Quiosque na Praça de Mouzinho de Albuquerque\",\r\n        \"latitude\": 41.15840148925781,\r\n        \"longitude\": -8.630023002624512\r\n    },\r\n    {\r\n        \"xid\": \"W13531471\",\r\n        \"user_id\":1,\r\n        \"name\": \"Jardim da Rotunda da Boavista\",\r\n        \"latitude\": 41.157920837402344,\r\n        \"longitude\": -8.629106521606445\r\n    },\r\n    {\r\n        \"xid\": \"Q37813003\",\r\n        \"user_id\":1,\r\n        \"name\": \"Cinema Pedro Cem\",\r\n        \"latitude\": 41.150238037109375,\r\n        \"longitude\": -8.62578010559082\r\n    },\r\n    {\r\n        \"xid\": \"W256278804\",\r\n        \"user_id\":1,\r\n        \"name\": \"Igreja do Seminário\",\r\n        \"latitude\": 41.15011978149414,\r\n        \"longitude\": -8.62797737121582\r\n    },\r\n    {\r\n        \"xid\": \"N6647824379\",\r\n        \"user_id\":1,\r\n        \"name\": \"O Melhor Café é o da Brasileira\",\r\n        \"latitude\": 41.15019226074219,\r\n        \"longitude\": -8.612600326538086\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestItinerary/itinerary",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestItinerary",
+										"itinerary"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save itinerary",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W484585764\",\r\n        \"pointOfInterestName\": \"Monumento aos Heróis da Guerra Peninsular (Porto)\",\r\n        \"distance\": 3.4592324397377614,\r\n        \"latitude\": 41.15791702270508,\r\n        \"longitude\": -8.62914752960205,\r\n        \"routeOrder\": 1,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W13531471\",\r\n        \"pointOfInterestName\": \"Jardim da Rotunda da Boavista\",\r\n        \"distance\": 93.50603324315061,\r\n        \"latitude\": 41.157920837402344,\r\n        \"longitude\": -8.629106521606445,\r\n        \"routeOrder\": 2,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"Q10356474\",\r\n        \"pointOfInterestName\": \"Quiosque na Praça de Mouzinho de Albuquerque\",\r\n        \"distance\": 936.6746648540371,\r\n        \"latitude\": 41.15840148925781,\r\n        \"longitude\": -8.630023002624512,\r\n        \"routeOrder\": 3,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W256278804\",\r\n        \"pointOfInterestName\": \"Igreja do Seminário\",\r\n        \"distance\": 184.44281015516938,\r\n        \"latitude\": 41.15011978149414,\r\n        \"longitude\": -8.62797737121582,\r\n        \"routeOrder\": 4,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"Q37813003\",\r\n        \"pointOfInterestName\": \"Cinema Pedro Cem\",\r\n        \"distance\": 1103.532634475582,\r\n        \"latitude\": 41.150238037109375,\r\n        \"longitude\": -8.62578010559082,\r\n        \"routeOrder\": 5,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"N6647824379\",\r\n        \"pointOfInterestName\": \"O Melhor Café é o da Brasileira\",\r\n        \"distance\": 0.0,\r\n        \"latitude\": 41.15019226074219,\r\n        \"longitude\": -8.612600326538086,\r\n        \"routeOrder\": 6,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestItinerary/itinerary/save",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestItinerary",
+										"itinerary",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an itinerary given an itinerary id and an user id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestItinerary/itinerary/1/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestItinerary",
+										"itinerary",
+										"1",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a point of interest from an itinerary given an itinerary id, an user id and a xid",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestItinerary/itinerary/1/6/W456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestItinerary",
+										"itinerary",
+										"1",
+										"6",
+										"W456"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "place-service",
+					"item": [
+						{
+							"name": "Get place by name and countryLetter",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/placesSearch/place/Porto,PT",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"placesSearch",
+										"place",
+										"Porto,PT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get place by user latitude and longitude",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/placesSearch/userPlace/41.15794/-8.629105",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"placesSearch",
+										"userPlace",
+										"41.15794",
+										"-8.629105"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "point-of-interest-management-service",
+					"item": [
+						{
+							"name": "Get Point of Interest by xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestManagement/W286005374",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestManagement",
+										"W286005374"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all points of interest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestManagement/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestManagement",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list of point of interests by radius, user latitude and user longitude",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestManagement/searchPointsInterest/radius=10000_lon=-8.610291481_lat=41.1510467529_kinds=historic_search=igreja_1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestManagement",
+										"searchPointsInterest",
+										"radius=10000_lon=-8.610291481_lat=41.1510467529_kinds=historic_search=igreja_1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Point of Interest by xid list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    \"N1528602579\",\r\n    \"W855601514\"\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/pointOfInterestManagement/listXid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointOfInterestManagement",
+										"listXid"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "search-history-service",
+					"item": [
+						{
+							"name": "Get last 5 user's points of interest searches",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointsOfInterestSearchHistory/searches/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointsOfInterestSearchHistory",
+										"searches",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "favorite-service",
+					"item": [
+						{
+							"name": "GET Favorites",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/favorite/user/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"favorite",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites Point Of Interest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/favorite/point-of-interest/W855601514",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"favorite",
+										"point-of-interest",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites Point Of Interest Count",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/favorite/point-of-interest-count/W855601514",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"favorite",
+										"point-of-interest-count",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Favorite User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"xid\": \"W855601514\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Favorite",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/favorite/1/W855601514",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"favorite",
+										"1",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "point-of-interest-review-service",
+					"item": [
+						{
+							"name": "Get Point of Interest review details given userId and xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointsOfInterestReview/reviews/1/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointsOfInterestReview",
+										"reviews",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all user points of interest reviews given userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointsOfInterestReview/reviews/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointsOfInterestReview",
+										"reviews",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all point of Interest reviews given an xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointsOfInterestReview/reviews/pointsOfInterest/W123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointsOfInterestReview",
+										"reviews",
+										"pointsOfInterest",
+										"W123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a point of interest rate given a xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/pointsOfInterestReview/reviews/rate/W123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointsOfInterestReview",
+										"reviews",
+										"rate",
+										"W123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a review to a certain point of interest",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"xid\": \"W123\",\r\n    \"commentary\": \"Good\",\r\n    \"rate\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/pointsOfInterestReview/reviews",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"pointsOfInterestReview",
+										"reviews"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Google Cloud",
+			"item": [
+				{
+					"name": "chosen-points-of-interest-service",
+					"item": [
+						{
+							"name": "Get all chosen points of a user given an user id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/chosenPoints/1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"chosenPoints",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save a chosen point of interest",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"xid\": \"W13531471\",\r\n    \"user_id\": 1,\r\n    \"name\": \"Jardim da Rotunda da Boavista\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://34.68.238.159/chosenPoints/save",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"chosenPoints",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a user chosen point of interest",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/chosenPoints/1/1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"chosenPoints",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "itinerary-service",
+					"item": [
+						{
+							"name": "Get an itinerary given user id and itinerary id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestItinerary/1/1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestItinerary",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all user itineraries given user id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestItinerary/1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestItinerary",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate itinerary",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"xid\": \"W484585764\",\r\n        \"user_id\":1,\r\n        \"name\": \"Monumento aos Heróis da Guerra Peninsular (Porto)\",\r\n        \"latitude\": 41.15791702270508,\r\n        \"longitude\": -8.62914752960205\r\n    },\r\n    {\r\n        \"xid\": \"Q10356474\",\r\n        \"user_id\":1,\r\n        \"name\": \"Quiosque na Praça de Mouzinho de Albuquerque\",\r\n        \"latitude\": 41.15840148925781,\r\n        \"longitude\": -8.630023002624512\r\n    },\r\n    {\r\n        \"xid\": \"W13531471\",\r\n        \"user_id\":1,\r\n        \"name\": \"Jardim da Rotunda da Boavista\",\r\n        \"latitude\": 41.157920837402344,\r\n        \"longitude\": -8.629106521606445\r\n    },\r\n    {\r\n        \"xid\": \"Q37813003\",\r\n        \"user_id\":1,\r\n        \"name\": \"Cinema Pedro Cem\",\r\n        \"latitude\": 41.150238037109375,\r\n        \"longitude\": -8.62578010559082\r\n    },\r\n    {\r\n        \"xid\": \"W256278804\",\r\n        \"user_id\":1,\r\n        \"name\": \"Igreja do Seminário\",\r\n        \"latitude\": 41.15011978149414,\r\n        \"longitude\": -8.62797737121582\r\n    },\r\n    {\r\n        \"xid\": \"N6647824379\",\r\n        \"user_id\":1,\r\n        \"name\": \"O Melhor Café é o da Brasileira\",\r\n        \"latitude\": 41.15019226074219,\r\n        \"longitude\": -8.612600326538086\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestItinerary/itinerary",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestItinerary",
+										"itinerary"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save itinerary",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W484585764\",\r\n        \"pointOfInterestName\": \"Monumento aos Heróis da Guerra Peninsular (Porto)\",\r\n        \"distance\": 3.4592324397377614,\r\n        \"latitude\": 41.15791702270508,\r\n        \"longitude\": -8.62914752960205,\r\n        \"routeOrder\": 1,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W13531471\",\r\n        \"pointOfInterestName\": \"Jardim da Rotunda da Boavista\",\r\n        \"distance\": 93.50603324315061,\r\n        \"latitude\": 41.157920837402344,\r\n        \"longitude\": -8.629106521606445,\r\n        \"routeOrder\": 2,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"Q10356474\",\r\n        \"pointOfInterestName\": \"Quiosque na Praça de Mouzinho de Albuquerque\",\r\n        \"distance\": 936.6746648540371,\r\n        \"latitude\": 41.15840148925781,\r\n        \"longitude\": -8.630023002624512,\r\n        \"routeOrder\": 3,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"W256278804\",\r\n        \"pointOfInterestName\": \"Igreja do Seminário\",\r\n        \"distance\": 184.44281015516938,\r\n        \"latitude\": 41.15011978149414,\r\n        \"longitude\": -8.62797737121582,\r\n        \"routeOrder\": 4,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"Q37813003\",\r\n        \"pointOfInterestName\": \"Cinema Pedro Cem\",\r\n        \"distance\": 1103.532634475582,\r\n        \"latitude\": 41.150238037109375,\r\n        \"longitude\": -8.62578010559082,\r\n        \"routeOrder\": 5,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    },\r\n    {\r\n        \"itinerary_id\": 7,\r\n        \"user_id\": 1,\r\n        \"xid\": \"N6647824379\",\r\n        \"pointOfInterestName\": \"O Melhor Café é o da Brasileira\",\r\n        \"distance\": 0.0,\r\n        \"latitude\": 41.15019226074219,\r\n        \"longitude\": -8.612600326538086,\r\n        \"routeOrder\": 6,\r\n        \"itineraryDate\": \"23-01-2023\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestItinerary/itinerary/save",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestItinerary",
+										"itinerary",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an itinerary given an itinerary id and an user id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestItinerary/itinerary/1/4",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestItinerary",
+										"itinerary",
+										"1",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a point of interest from an itinerary given an itinerary id, an user id and a xid",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestItinerary/itinerary/1/6/W456",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestItinerary",
+										"itinerary",
+										"1",
+										"6",
+										"W456"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "place-service",
+					"item": [
+						{
+							"name": "Get place by name and countryLetter",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/placesSearch/place/Porto,PT",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"placesSearch",
+										"place",
+										"Porto,PT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get place by user latitude and longitude",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/placesSearch/userPlace/41.15794/-8.629105",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"placesSearch",
+										"userPlace",
+										"41.15794",
+										"-8.629105"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "point-of-interest-management-service",
+					"item": [
+						{
+							"name": "Get Point of Interest by xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestManagement/W286005374",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestManagement",
+										"W286005374"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all points of interest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestManagement/",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestManagement",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list of point of interests by radius, user latitude and user longitude",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestManagement/searchPointsInterest/radius=10000_lon=-8.610291481_lat=41.1510467529_kinds=historic_search=igreja_1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestManagement",
+										"searchPointsInterest",
+										"radius=10000_lon=-8.610291481_lat=41.1510467529_kinds=historic_search=igreja_1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Point of Interest by xid list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    \"N1528602579\",\r\n    \"W855601514\"\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://34.68.238.159/pointOfInterestManagement/listXid",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointOfInterestManagement",
+										"listXid"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "search-history-service",
+					"item": [
+						{
+							"name": "Get last 5 user's points of interest searches",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointsOfInterestSearchHistory/searches/1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointsOfInterestSearchHistory",
+										"searches",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "favorite-service",
+					"item": [
+						{
+							"name": "GET Favorites",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/favorite",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/favorite/user/1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"favorite",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites Point Of Interest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/favorite/point-of-interest/W855601514",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"favorite",
+										"point-of-interest",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Favorites Point Of Interest Count",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/favorite/point-of-interest-count/W855601514",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"favorite",
+										"point-of-interest-count",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE Favorite User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"xid\": \"W855601514\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://34.68.238.159/favorite",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Favorite",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/favorite/1/W855601514",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"favorite",
+										"1",
+										"W855601514"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "point-of-interest-review-service",
+					"item": [
+						{
+							"name": "Get Point of Interest review details given userId and xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointsOfInterestReview/reviews/1/1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointsOfInterestReview",
+										"reviews",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all user points of interest reviews given userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointsOfInterestReview/reviews/users/1",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointsOfInterestReview",
+										"reviews",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all point of Interest reviews given an xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointsOfInterestReview/reviews/pointsOfInterest/W123",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointsOfInterestReview",
+										"reviews",
+										"pointsOfInterest",
+										"W123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a point of interest rate given a xid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://34.68.238.159/pointsOfInterestReview/reviews/rate/W123",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointsOfInterestReview",
+										"reviews",
+										"rate",
+										"W123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a review to a certain point of interest",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"xid\": \"W123\",\r\n    \"commentary\": \"Good\",\r\n    \"rate\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://34.68.238.159/pointsOfInterestReview/reviews",
+									"protocol": "http",
+									"host": [
+										"34",
+										"68",
+										"238",
+										"159"
+									],
+									"path": [
+										"pointsOfInterestReview",
+										"reviews"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "External APIs",
+			"item": [
+				{
+					"name": "Geocode",
+					"item": [
+						{
+							"name": "geocode request by lat and lon",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://free.geocode.xyz/41.15791702270508,-8.62910?json=1&auth=146757971978544231850x80599",
+									"protocol": "https",
+									"host": [
+										"free",
+										"geocode",
+										"xyz"
+									],
+									"path": [
+										"41.15791702270508,-8.62910"
+									],
+									"query": [
+										{
+											"key": "json",
+											"value": "1"
+										},
+										{
+											"key": "auth",
+											"value": "146757971978544231850x80599"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "geocode request by place name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://free.geocode.xyz/Porto,Portugal?json=1&auth=146757971978544231850x80599",
+									"protocol": "https",
+									"host": [
+										"free",
+										"geocode",
+										"xyz"
+									],
+									"path": [
+										"Porto,Portugal"
+									],
+									"query": [
+										{
+											"key": "json",
+											"value": "1"
+										},
+										{
+											"key": "auth",
+											"value": "146757971978544231850x80599"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "OpenTripMap",
+					"item": [
+						{
+							"name": "Get a list of point of interests by radius, user latitude and user longitude OpenTripMap APi Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.opentripmap.com/0.1/en/places/radius?radius=100000&lon=-8.629105&lat=41.157944&format=json&apikey=5ae2e3f221c38a28845f05b68edc5df0fd0cbad4655730403e80614c",
+									"protocol": "https",
+									"host": [
+										"api",
+										"opentripmap",
+										"com"
+									],
+									"path": [
+										"0.1",
+										"en",
+										"places",
+										"radius"
+									],
+									"query": [
+										{
+											"key": "radius",
+											"value": "100000"
+										},
+										{
+											"key": "lon",
+											"value": "-8.629105"
+										},
+										{
+											"key": "lat",
+											"value": "41.157944"
+										},
+										{
+											"key": "format",
+											"value": "json"
+										},
+										{
+											"key": "apikey",
+											"value": "5ae2e3f221c38a28845f05b68edc5df0fd0cbad4655730403e80614c"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search a Point of interest by name (Auto suggestion)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.opentripmap.com/0.1/en/places/autosuggest?name=Museu&radius=1000&lon=-8.629105&lat=41.157944&format=json&apikey=5ae2e3f221c38a28845f05b68edc5df0fd0cbad4655730403e80614c\n",
+									"protocol": "https",
+									"host": [
+										"api",
+										"opentripmap",
+										"com"
+									],
+									"path": [
+										"0.1",
+										"en",
+										"places",
+										"autosuggest"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Museu"
+										},
+										{
+											"key": "radius",
+											"value": "1000"
+										},
+										{
+											"key": "lon",
+											"value": "-8.629105"
+										},
+										{
+											"key": "lat",
+											"value": "41.157944"
+										},
+										{
+											"key": "format",
+											"value": "json"
+										},
+										{
+											"key": "apikey",
+											"value": "5ae2e3f221c38a28845f05b68edc5df0fd0cbad4655730403e80614c\n"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get point of interest details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.opentripmap.com/0.1/en/places/xid/W484585764?apikey=5ae2e3f221c38a28845f05b68edc5df0fd0cbad4655730403e80614c",
+									"protocol": "https",
+									"host": [
+										"api",
+										"opentripmap",
+										"com"
+									],
+									"path": [
+										"0.1",
+										"en",
+										"places",
+										"xid",
+										"W484585764"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "5ae2e3f221c38a28845f05b68edc5df0fd0cbad4655730403e80614c"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "OpenRouteService",
+					"item": [
+						{
+							"name": "Generate route",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openrouteservice.org/v2/directions/driving-car?coordinates=\" +\n                    coordinates \"&api_key=5b3ce3597851110001cf62488f3b16a2bad5404e9d5f01c07975dab4",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openrouteservice",
+										"org"
+									],
+									"path": [
+										"v2",
+										"directions",
+										"driving-car"
+									],
+									"query": [
+										{
+											"key": "coordinates",
+											"value": "\" +\n                    coordinates \""
+										},
+										{
+											"key": "api_key",
+											"value": "5b3ce3597851110001cf62488f3b16a2bad5404e9d5f01c07975dab4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "OSRM",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://router.project-osrm.org/route/v1/driving/-8.629106521606445,41.157920837402344;-8.62914752960205,41.15791702270508;-8.630023002624512,41.15840148925781&annotations=true&overview=simplified",
+									"protocol": "http",
+									"host": [
+										"router",
+										"project-osrm",
+										"org"
+									],
+									"path": [
+										"route",
+										"v1",
+										"driving",
+										"-8.629106521606445,41.157920837402344;-8.62914752960205,41.15791702270508;-8.630023002624512,41.15840148925781&annotations=true&overview=simplified"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

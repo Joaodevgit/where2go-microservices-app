@@ -1,0 +1,27 @@
+version: '3.9'
+
+volumes:
+  user-db:
+    driver: local
+
+networks:
+  kong-net:
+    name: kong-net
+    driver: bridge
+
+services:
+  favorite-service:
+    image: favorite-service:latest
+    container_name: favorite-service
+    ports:
+      - 8010:8010
+    environment:
+      - SPRING_APPLICATION_NAME=user_app
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://user-db:5431/user_app
+      - SPRING_DATASOURCE_USERNAME=user_app
+      - SPRING_DATASOURCE_PASSWORD=user_app
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+    networks:
+      - kong-net

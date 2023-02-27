@@ -1,0 +1,40 @@
+server:
+  port: 8006
+spring:
+  application:
+    name: search-history-service
+    datasource:
+      username: joao
+      password: estg123
+      url: jdbc:postgresql://postgres:5433/search-history
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+      show-sql: true
+
+rabbitmq:
+  consumer:
+    queue:
+      point-of-interest-search-service:
+        name: point_of_interest_search_queue
+    exchange:
+      point-of-interest-search-service:
+        name: point_of_interest_search_exchange
+    routing:
+      point-of-interest-search-service:
+        name: point_of_interest_search_routing_key
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/search-history

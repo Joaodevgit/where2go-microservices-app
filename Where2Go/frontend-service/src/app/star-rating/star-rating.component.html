@@ -1,0 +1,14 @@
+
+
+<div fxLayout="row">
+  <div *ngFor="let _ of [].constructor(fullStars)">
+    <mat-icon >star</mat-icon>
+  </div>
+  <div *ngFor="let _ of [].constructor(middleStars)">
+    <mat-icon>star_half</mat-icon>
+  </div>
+  <div *ngFor="let _ of [].constructor(emptyStars)">
+    <mat-icon>star_border</mat-icon>
+  </div>
+
+</div>

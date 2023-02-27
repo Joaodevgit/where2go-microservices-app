@@ -1,0 +1,40 @@
+.home-banner {
+  text-align: center;
+
+}
+.banner-image {
+  display: inline-block;
+
+}
+
+.title{
+  margin-top:10px;
+  margin-bottom: 15px;
+  font-size: 30px;
+  color: #6e3e1c;
+  font-weight: bold;
+
+}
+
+.imagem {
+  width: 200px;
+  height: 200px;
+}
+
+img{
+
+  width: 150px;
+  height: 150px;
+}
+
+img{
+  cursor: pointer;
+}
+.pointName:hover, img:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pointName{
+  cursor: pointer;
+}

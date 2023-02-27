@@ -1,0 +1,26 @@
+<mat-toolbar class="background-toolbar">
+  <mat-toolbar-row>
+    <a routerLink="">
+      <img src="assets/where2go.png" alt="where2go.png">
+    </a>
+
+
+    <mat-tab-group class="example-spacer" [color]="backgroundColor" (selectedTabChange)="tabChanged($event)">
+      <mat-tab label="Geral" value="geral"></mat-tab>
+      <mat-tab label="Hóteis" value="hotels"></mat-tab>
+      <mat-tab label="Restaurantes" value="foods"></mat-tab>
+      <mat-tab label="Museus" value="musuems"></mat-tab>
+      <mat-tab label="Monumentos" value="monuments_and_memorials"></mat-tab>
+    </mat-tab-group>
+
+    <button mat-icon-button (click)="openDialog()" *ngIf="!userIsAuthenticated">
+      <mat-icon>person</mat-icon>
+    </button>
+    <button *ngIf="userIsAuthenticated"  mat-icon-button routerLink="/generate-itinerary" >
+      <mat-icon matBadge="{{numberLength}}" matBadgeColor="warn">map</mat-icon>
+    </button>
+    <button *ngIf="userIsAuthenticated" mat-icon-button (click)="toggleSideBar()">
+      <mat-icon >list</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,103 @@
+.home-banner {
+  text-align: center;
+
+}
+.banner-image {
+  display: inline-block;
+
+}
+
+.mat-form-field {
+  background-color: transparent;
+}
+
+
+
+mat-form-field{
+  width: 20%;
+}
+.button-main{
+  background-color: #6e3e1c;
+  color: #f4f0df;
+}
+
+.button-main:hover{
+  background-color: #f4f0df;
+  color: #6e3e1c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+mat-spinner{
+  margin: auto;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #6e3e1c;;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+}
+
+.vertical-text {
+  writing-mode: vertical-lr; /* Define a direção da escrita vertical */
+  text-orientation: mixed; /* Define a orientação do texto para cima */
+  transform: rotate(-180deg); /* Gira o texto em 180 graus */
+  white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+  background-color: #6e3e1c;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  align-items: center;
+  text-align: center;
+
+}
+
+.vertical-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #6e3e1c;
+}
+
+h1{
+  color: #f4f0df;
+  font-size: 6vh;
+  font-family: "Juice ITC";
+}
+.container{
+  background-color: #f4f0df;
+  border-radius: 10px;
+  height: 400px;
+
+}
+
+mat-grid-list{
+
+  height: 100%;
+}
+
+
+.pointOfInterestSection{
+  cursor: pointer;
+  height: 100%;
+}
+
+mat-grid-tile {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+h3{
+  text-align: center;
+  align-items: center;
+}

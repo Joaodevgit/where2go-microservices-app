@@ -1,0 +1,45 @@
+server:
+  port: 8007
+spring:
+  application:
+    name: itinerary-service
+    datasource:
+      username: joao
+      password: estg123
+      url: jdbc:postgresql://postgres:5433/itinerary
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+      show-sql: true
+
+rabbitmq:
+  producer:
+    queue:
+      chosen-points-of-interest-search-service:
+        name: chosen_points_of_interest_queue
+    exchange:
+      chosen-points-of-interest-search-service:
+        name: chosen_points_of_interest_exchange
+    routing:
+      chosen-points-of-interest-search-service:
+        name: chosen_points_of_interest_routing_key
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+api:
+  key:
+    pointOfInterest:
+      name: 5ae2e3f221c38a28845f05b68edc5df0fd0cbad4655730403e80614c
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/itinerary

@@ -1,0 +1,30 @@
+<mat-nav-list>
+  <div class="my-class">
+    <br>
+    <br>
+    <span style="font-weight: 900;">Olá,</span>
+    <br>
+    <span>{{nameUser}}</span>
+    <br>
+    <br>
+    <br>
+
+    <a mat-list-item routerLink="searchHistory">
+      <span>Histórico de Pesquisas</span>
+    </a>
+
+    <a mat-list-item routerLink="myItinerary">
+      <span>Meus Itinerários</span>
+    </a>
+
+    <a mat-list-item routerLink="myFavorites">
+      <span>Favoritos</span>
+    </a>
+
+    <a mat-list-item (click)="onLogOut()" (click)="closeSideBar()">
+      <span>
+         Terminar Sessão</span>
+    </a>
+
+  </div>
+</mat-nav-list>

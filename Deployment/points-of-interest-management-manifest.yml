@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: points-of-interest-management-deployment
+  labels:
+    app: points-of-interest-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: points-of-interest-management
+  template:
+    metadata:
+      labels:
+        app: points-of-interest-management
+    spec:
+      containers:
+        - name: points-of-interest-management
+          image: joaotdev/mtsds-where2go:point-of-interest-management-service
+#          resources:
+#            requests:
+#              cpu: 100m
+#              memory: 64Mi
+#            limits:
+#              cpu: 200m
+#              memory: 128Mi
+          ports:
+            - containerPort: 8005
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "points-of-interest-management-service"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-service:5432/points-of-interest-management"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "where2go"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "where2go@123"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
+              value: "org.hibernate.dialect.PostgreSQLDialect"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+              value: "true"
+            - name: SPRING_RABBITMQ_HOST
+              value: "rabbitmq-service"
+            - name: SPRING_RABBITMQ_PORT
+              value: "5672"
+            - name: SPRING_RABBITMQ_USERNAME
+              value: "guest"
+            - name: SPRING_RABBITMQ_PASSWORD
+              value: "guest"
+            - name: EUREKA_CLIENT_REGISTER-WITH-EUREKA
+              value: "true"
+            - name: EUREKA_CLIENT_FETCH-REGISTRY
+              value: "true"
+            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE
+              value: "http://eureka-server-service:8761/eureka"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: points-of-interest-management-service 
+  name: points-of-interest-management-service
+spec:
+  type: ClusterIP
+  selector:
+    app: points-of-interest-management
+  ports:
+    - protocol: TCP
+      port: 8005
+      targetPort: 8005

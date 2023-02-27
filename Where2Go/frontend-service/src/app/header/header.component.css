@@ -1,0 +1,17 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.background-toolbar {
+  background-color: #f4f0df;
+}
+
+img {
+  width: 100px;
+  height: 100%;
+  object-fit: cover;
+}
+
+mat-icon {
+  color: #6e3e1c;
+}

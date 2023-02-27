@@ -1,0 +1,40 @@
+server:
+  port: 8009
+spring:
+  application:
+    name: chosen-points-of-interest-service
+    datasource:
+      username: joao
+      password: estg123
+      url: jdbc:postgresql://postgres:5433/chosen-points-of-interest
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+      show-sql: true
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+rabbitmq:
+  consumer:
+    queue:
+      chosen-points-of-interest-search-service:
+        name: chosen_points_of_interest_queue
+    exchange:
+      chosen-points-of-interest-search-service:
+        name: chosen_points_of_interest_exchange
+    routing:
+      chosen-points-of-interest-search-service:
+        name: chosen_points_of_interest_routing_key
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/chosen-points-of-interest

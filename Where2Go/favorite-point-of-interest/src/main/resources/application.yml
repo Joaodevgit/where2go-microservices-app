@@ -1,0 +1,31 @@
+server:
+  port: 8010
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: user_app
+  datasource:
+    username: where2go
+    password: where2go@123
+    url: jdbc:postgresql://postgres:5433/favorite
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/favorite
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

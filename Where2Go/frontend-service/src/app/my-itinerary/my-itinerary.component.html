@@ -1,0 +1,43 @@
+<mat-expansion-panel *ngFor="let itinerary of itineraries; let indexOfelement=index;">
+  <mat-expansion-panel-header>
+    <mat-panel-title>Itinaray nº {{indexOfelement +1}}</mat-panel-title>
+  </mat-expansion-panel-header>
+  <div *ngIf="dataLoaded">
+
+    <div fxLayoutAlign="end start" >
+      <button mat-icon-button (click)="deleteItinerary(itinerary.itinerary_id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <br>
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <div fxFlex="70%">
+        <ng-container>
+          <agm-map *ngIf="dataLoaded">
+            <agm-direction
+              [travelMode]="travelMode"
+              [origin]="routes[indexOfelement].origin"
+              [destination]="routes[indexOfelement].destination"
+              [waypoints]="routes[indexOfelement].waypoints"
+            >
+            </agm-direction>
+          </agm-map>
+        </ng-container>
+      </div>
+      <div fxFlex="30%">
+        <div *ngFor="let point of itinerary.itinerary">
+          <mat-card class="example-card" style="display: flex" (click)="getPointInterestInfo(point.xid)">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>{{point.pointOfInterestName}}</mat-card-title>
+                <img mat-card-md-image src="{{point.image}}">
+              </mat-card-title-group>
+            </mat-card-header>
+          </mat-card>
+          </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</mat-expansion-panel>

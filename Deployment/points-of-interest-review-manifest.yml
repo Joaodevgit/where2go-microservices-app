@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: points-of-interest-review-deployment
+  labels:
+    app: points-of-interest-review
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: points-of-interest-review
+  template:
+    metadata:
+      labels:
+        app: points-of-interest-review
+    spec:
+      containers:
+        - name: points-of-interest-review
+          image: joaotdev/mtsds-where2go:point-of-interest-review-service
+#          resources:
+#            requests:
+#              cpu: 100m
+#              memory: 64Mi
+#            limits:
+#              cpu: 200m
+#              memory: 128Mi
+          ports:
+            - containerPort: 8011
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "points-of-interest-review-service"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-service:5432/points-of-interest-review"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "where2go"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "where2go@123"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
+              value: "org.hibernate.dialect.PostgreSQLDialect"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+              value: "true"
+            - name: EUREKA_CLIENT_REGISTER-WITH-EUREKA
+              value: "true"
+            - name: EUREKA_CLIENT_FETCH-REGISTRY
+              value: "true"
+            - name: EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE
+              value: "http://eureka-server-service:8761/eureka"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: points-of-interest-review-service
+spec:
+  type: ClusterIP
+  selector:
+    app: points-of-interest-review
+  ports:
+    - protocol: TCP
+      port: 8011
+      targetPort: 8011

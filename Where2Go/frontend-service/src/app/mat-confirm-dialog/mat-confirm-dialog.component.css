@@ -1,0 +1,32 @@
+button{
+  width: 50%;
+}
+
+span{
+  text-align: center;
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
+mat-dialog-container{
+  width: 100%;
+}
+
+#no-button:hover{
+  background-color: red;
+  color: white;
+}
+
+#yes-button:hover{
+  background: green;
+  color: white;
+}
+
+#close-icon{
+  background: red;
+  color: white;
+}
+h3{
+  text-align: center;
+}

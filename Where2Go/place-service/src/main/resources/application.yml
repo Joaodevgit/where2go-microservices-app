@@ -1,0 +1,33 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: place-service
+    datasource:
+      username: joao
+      password: estg123
+      url: jdbc:postgresql://postgres:5433/place
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+      show-sql: true
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+api:
+  key:
+    geocode:
+      name: 146757971978544231850x80599
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/place

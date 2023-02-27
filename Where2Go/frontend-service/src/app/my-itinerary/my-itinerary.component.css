@@ -1,0 +1,21 @@
+mat-expansion-panel{
+  margin-bottom: 20px;
+  margin-top:20px;
+}
+
+agm-map {
+  height: 600px;
+  width: 100%;
+}
+.example-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+
+
+
+.example-card:hover{
+  text-decoration: underline;
+}

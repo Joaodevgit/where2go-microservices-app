@@ -1,0 +1,54 @@
+server:
+  port: 8005
+spring:
+  application:
+    name: points-of-interest-management
+    datasource:
+      username: where2go
+      password: where2go@123
+      url: jdbc:postgresql://postgres:5433/points-of-interest-management
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+      show-sql: true
+#  datasource:
+#    url: jdbc:h2:file:~/Desktop\\MTSDS\\mtsds-projeto\\Projeto\\Where2Go\\points-of-interest-management-service\\demodb
+#    driverClassName: org.h2.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: update
+#  h2:
+#    console.enabled: true
+
+rabbitmq:
+  producer:
+    queue:
+      point-of-interest-search-service:
+        name: point_of_interest_search_queue
+    exchange:
+      point-of-interest-search-service:
+        name: point_of_interest_search_exchange
+    routing:
+      point-of-interest-search-service:
+        name: point_of_interest_search_routing_key
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+api:
+  key:
+    pointOfInterest:
+      name: 5ae2e3f221c38a28845f05b68edc5df0fd0cbad4655730403e80614c
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/points-of-interest-management
