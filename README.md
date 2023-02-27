@@ -16,6 +16,7 @@ The user can explore all the tourist points that are distributed by different ca
 
 - [Technologies](#technologies)
 - [Project Architecture](#architecture)
+- [Deployment Information](#deployment_info)
 - [Demo](#demo)
 - [Project Contributors](#project_contributors)
 - [License](#license)
@@ -39,6 +40,10 @@ Then we have the External API's layer which contains the following APIs. These A
 - <a href="https://geocode.xyz/">`Geocode.xyz`</a> - API that returns geographic information about a given location 
 
 In this architecture is also present the layer that contains all the microservices of the application, where they are responsible for responding to requests received by the API Gateway Kong. Finally, out of these 4 layers, 3 technologies are referenced that will be responsible for making the local deployment of the solution (Kubernetes + Docker)
+
+<a name="deployment_info"></a>
+## Deployment Information
+You can find <a href="https://github.com/Joaodevgit/where2go-microservices-app/tree/main/Deployment">`here`</a> some detailed information and guides on how to create a docker image and how to test locally kubernetes project manifest yml files using <a href="https://minikube.sigs.k8s.io/docs/">`minikube`</a> tool.
 
 <a name="demo"></a>
 ## Demo
